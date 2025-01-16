@@ -1,0 +1,19 @@
+<h2>Dashboard</h2>
+<div class="header">
+<button mat-raised-button [mat-menu-trigger-for]="widgetMenu">
+    <mat-icon>add</mat-icon>
+    Add Widget
+</button>
+<mat-menu #widgetMenu="matMenu">
+    @for (widget of store.widgetstoAdd(); track widget.id){
+    <button mat-menu-item>
+        {{ widget.label }}
+    </button>
+}
+</mat-menu>
+</div>
+<div class="dashboard-widget">
+@for (w of store.widgets(); track w.id){
+    <app-widget [data]="w"/>
+}
+</div>
