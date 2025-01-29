@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SubscribersComponent } from './subscribers/subscribers.component';
-import { ViewsComponent } from './views/views.component';
+import { weeklygoalComponent } from './weeklygoal/weeklygoal.component';
+import { SeasonProgressComponent } from './seasonProgress/seasonProgress.component';
 
 const components = [
-  ViewsComponent,
-  SubscribersComponent
+  SeasonProgressComponent,
+  weeklygoalComponent
 ]
 
 @NgModule({
   imports: [CommonModule],
   declarations: components,
   exports: components,
-  providers: [ViewsComponent, SubscribersComponent]
+  providers: [SeasonProgressComponent, weeklygoalComponent]
 })
 export class WidgetsModule { }
