@@ -1,5 +1,28 @@
-<div class="container mat-elevation-z3" >
-    <h3 class="m-0"> {{data().label}}</h3>
-    <ng-container [ngComponentOutlet]="data().content"></ng-container>
+<div class="flex flex-row mb-5 page-divider">
+  <span
+    class="text-black lg:text-2xl sm:text-lg font-bold font-['Lexend'] leading-10 tracking-wide mt-5"
+    >{{ data.label }}
+  </span>
 </div>
 
+<div
+  class="container mat-elevation-z3"
+  [style.background-color]="data.backgroundColor ?? 'white'"
+  [style.color]="data.color ?? 'inherit'"
+  style="padding-bottom: 30px;"
+>
+  <!-- <h3 class="m-0"> {{ data.label }}</h3> -->
+  <button
+    mat-icon-button
+    class="settings-button"
+    (click)="showOptions.set(true)"
+    [style.--mdc-icon-button-icon-color]="data.color ?? 'inherit'"
+  >
+    <mat-icon>settings-button</mat-icon>
+  </button>
+  <ng-container [ngComponentOutlet]="data.content"></ng-container>
+  <div *ngIf="showOptions()">
+    <app-widget-options [data]="data" [(showOptions)]="showOptions">
+    </app-widget-options>
+  </div>
+</div>

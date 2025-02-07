@@ -1,0 +1,100 @@
+:host {
+    position: absolute;
+    z-index: 2;
+    background: whitesmoke;
+    color: black;
+    top: 0;
+    left: 0;
+    border-radius: inherit;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+
+    --mat-standard-button-toggle-height: 16px;
+
+    transition: box-shadow 0.3s ease;
+
+    > div {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: center;
+        margin-bottom: 12px;
+    }
+
+    &:hover {
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    &:focus {
+        outline: 2px solid #1976d2;
+    }
+
+    @media (max-width: 600px) {
+        width: 90%;
+        height: auto;
+        top: 10%;
+        left: 5%;
+    }
+    .close-button{
+        position: absolute;
+        top: 0;
+        right: 0;
+        border-radius: 50%;
+        border: none !important;
+        :hover{
+            background-color: rgba(0, 0, 0, 0.1); /* Light gray highlight */
+            border-radius: 100%; /* Ensure it's rounded */
+            transition: background-color 0.2s ease-in-out;
+        }
+    }
+    .move-forward-button{
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: -5px;
+        border-radius: 50%;
+        border: none !important;
+        :hover{
+            background-color: rgba(0, 0, 0, 0.1); /* Light gray highlight */
+            border-radius: 100%; /* Ensure it's rounded */
+            transition: background-color 0.2s ease-in-out;
+        }
+    }
+    .move-backward-button{
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 5px;
+        border-radius: 50%;
+        border: none !important;
+        :hover{
+            background-color: rgba(0, 0, 0, 0.1); /* Light gray highlight */
+            border-radius: 100%; /* Ensure it's rounded */
+            transition: background-color 0.2s ease-in-out;
+        }
+
+    }
+    .remove-widget-button{
+        position: absolute;
+        top: 0;
+        left: 0;
+        color: red;
+        // background: none !important;
+        border: none !important;
+        border-radius: 50%;
+        // box-shadow: none !important;
+        // outline: none !important;
+        :hover{
+            background-color: rgba(0, 0, 0, 0.1); /* Light gray highlight */
+            border-radius: 100%; /* Ensure it's rounded */
+            transition: background-color 0.2s ease-in-out;
+        }
+    }
+}

@@ -16,7 +16,6 @@ export class weeklygoalComponent {
         type: 'shadow', // Tooltip type: 'shadow', 'line', etc.
       },
     },
-    legend: {},
     grid: {
       left: '3%',
       right: '4%',

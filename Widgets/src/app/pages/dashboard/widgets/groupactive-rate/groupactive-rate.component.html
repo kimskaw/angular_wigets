@@ -1,0 +1,100 @@
+<div class="flow-root">
+    <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+        <div class="overflow-hidden ring-1 ring-black ring-opacity-5 rounded-3xl p-5 bg-white">
+          <table class="min-w-full divide-y divide-gray-300" mat-table [dataSource]="matTableData">
+  
+            <!-- Desktop Header Row -->
+            <ng-container *ngIf="!mobileQuery.matches">
+              <tr mat-header-row *matHeaderRowDef="tableColumns" class="h-9 p-5 text-center text-neutral-400 text-sm font-medium font-['Lexend']"></tr>
+            </ng-container>
+            
+            <!-- Data Row -->
+            <tr mat-row *matRowDef="let row; columns: tableColumns" [class.h-10]="!mobileQuery.matches" class="p-5 text-center text-neutral-400 text-sm font-medium font-['Lexend'] even:bg-gray-100"></tr>
+            
+            <!-- Column: number (displayed as "#") -->
+            <ng-container matColumnDef="number">
+              <th mat-header-cell *matHeaderCellDef class="py-3.5 text-indigo-500 text-sm font-medium font-['Lexend']"> # </th>
+              <td mat-cell *matCellDef="let row">
+                <ng-container *ngIf="mobileQuery.matches">
+                  <span class="font-bold">#</span><br>
+                </ng-container>
+                {{ row['#'] }}
+              </td>
+            </ng-container>
+            
+            <!-- Column: group -->
+            <ng-container matColumnDef="group">
+              <th mat-header-cell *matHeaderCellDef class="py-3.5 text-indigo-500 text-sm font-medium font-['Lexend']"> Group </th>
+              <td mat-cell *matCellDef="let row">
+                <ng-container *ngIf="mobileQuery.matches">
+                  <span class="font-bold">Group</span><br>
+                </ng-container>
+                {{ row.group }}
+              </td>
+            </ng-container>
+            
+            <!-- Column: name -->
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef class="py-3.5 text-indigo-500 text-sm font-medium font-['Lexend']"> Name </th>
+              <td mat-cell *matCellDef="let row">
+                <ng-container *ngIf="mobileQuery.matches">
+                  <span class="font-bold">Name</span><br>
+                </ng-container>
+                {{ row.name }}
+              </td>
+            </ng-container>
+            
+            <!-- Column: finding -->
+            <ng-container matColumnDef="finding">
+              <th mat-header-cell *matHeaderCellDef class="py-3.5 text-indigo-500 text-sm font-medium font-['Lexend']"> Finding </th>
+              <td mat-cell *matCellDef="let row">
+                <ng-container *ngIf="mobileQuery.matches">
+                  <span class="font-bold">Finding</span><br>
+                </ng-container>
+                {{ row.finding }}
+              </td>
+            </ng-container>
+            
+            <!-- Column: fm -->
+            <ng-container matColumnDef="fm">
+              <th mat-header-cell *matHeaderCellDef class="py-3.5 text-indigo-500 text-sm font-medium font-['Lexend']"> FM </th>
+              <td mat-cell *matCellDef="let row">
+                <ng-container *ngIf="mobileQuery.matches">
+                  <span class="font-bold">FM</span><br>
+                </ng-container>
+                {{ row.fm }}
+              </td>
+            </ng-container>
+            
+            <!-- Column: picking -->
+            <ng-container matColumnDef="picking">
+              <th mat-header-cell *matHeaderCellDef class="py-3.5 text-indigo-500 text-sm font-medium font-['Lexend']"> Picking </th>
+              <td mat-cell *matCellDef="let row">
+                <ng-container *ngIf="mobileQuery.matches">
+                  <span class="font-bold">Picking</span><br>
+                </ng-container>
+                {{ row.picking }}
+              </td>
+            </ng-container>
+            
+          </table>
+          <div class="flex items-center justify-between border-t border-gray-200 bg-white px-4 pt-0 pb-3 sm:px-6">
+            <div class="sm:flex sm:flex-1 sm:items-center sm:justify-between">
+              <div>
+                <div class="flex w-full justify-center">
+                  <mat-paginator
+                  class="mat_paginator"
+                  [pageSize]="10"
+                  [hidePageSize]="true"
+                  aria-label="Select page">
+                  </mat-paginator>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

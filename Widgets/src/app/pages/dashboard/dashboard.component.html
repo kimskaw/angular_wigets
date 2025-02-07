@@ -1,19 +1,49 @@
-<h2>Dashboard</h2>
-<div class="header">
-<button mat-raised-button [mat-menu-trigger-for]="widgetMenu">
-    <mat-icon>add</mat-icon>
-    Add Widget
-</button>
-<mat-menu #widgetMenu="matMenu">
-    @for (widget of store.widgetstoAdd(); track widget.id){
-    <button mat-menu-item>
-        {{ widget.label }}
-    </button>
-}
-</mat-menu>
-</div>
-<div class="dashboard-widget">
-@for (w of store.widgets(); track w.id){
-    <app-widget [data]="w"/>
-}
+<div class="main-content px-0 sm:px-0 lg:px-8 h-full">
+  <div class="w-1200 rounded-md justify-start items-start inline-flex">
+    <div class="flex flex-row my-5 justify-start items-start">
+      <mat-tab-group (selectedTabChange)="tabClick($event)">
+        <mat-tab *ngFor="let tab of asyncTabs | async">
+          <ng-template mat-tab-label>
+            {{ tab.label }}
+          </ng-template>
+        </mat-tab>
+      </mat-tab-group>
+          <button
+            class="top-right"
+            mat-raised-button
+            [mat-menu-trigger-for]="widgetMenu"
+          >
+            <mat-icon>add</mat-icon>
+            Add Widget
+          </button>
+
+          <mat-menu #widgetMenu="matMenu">
+            <ng-container
+              *ngIf="store.widgetstoAdd().length > 0; else noWidgets"
+            >
+              <button
+                mat-menu-item
+                (click)="store.addWidget(widget)"
+                *ngFor="let widget of store.widgetstoAdd()"
+              >
+                {{ widget.label }}
+              </button>
+            </ng-container>
+            <ng-template #noWidgets>
+              <button mat-menu-item disabled>No widgets to add</button>
+            </ng-template>
+          </mat-menu>
+
+          <!-- <mat-tab>
+    <ng-template mat-tab-label> "EV Report" </ng-template>
+  </mat-tab> -->
+    </div>
+
+  </div>
+  <div #dashboard class="dashboard-widget">
+    <!-- @for (w of store.third_row(); track w.id) -->
+    <ng-container *ngFor="let w of store.addedWidgets()">
+      <app-widget [data]="w"></app-widget>
+    </ng-container>
+  </div>
 </div>
