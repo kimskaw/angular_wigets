@@ -1,15 +1,14 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-filter',
-  templateUrl: './filter.component.html',
-  styleUrl: './filter.component.scss'
+  selector: 'app-table-filter',
+  templateUrl: './table-filter.component.html',
+  styleUrl: './table-filter.component.scss'
 })
-export class FilterComponent {
+export class TableFilterComponent {
   showDepartmentType: boolean = false;
   
   checklog(){
     console.log(this.showDepartmentType, "DEPT")
   }
-
 }

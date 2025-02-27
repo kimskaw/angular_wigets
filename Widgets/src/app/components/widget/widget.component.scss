@@ -3,11 +3,35 @@
 @import 'tailwindcss/utilities';
 
 :host {
-    display: block;
-    border-radius: 16px;
+  display: block;
+  border-radius: 16px;
+  grid-column: auto / span var(--col-span, 1);
+  grid-row: auto / span var(--row-span, 1);
 }
 
+.label {
+  margin-bottom: -10px;
+}
+
+// .mobile_container {
+//   max-width: 90%;
+//   width: 100%;
+//   border-radius: 16px;
+//   padding: 15px;
+// }
+
 .container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: inherit;
+  overflow: hidden;
+  margin: 0;
+  padding-top: 0px;
+}
+
+.filter-container {
     position: relative;
     height: 100%;
     width: 100%;
@@ -16,11 +40,20 @@
     overflow: hidden;
     margin: 0;
     padding-top: 0px;
+    max-height: 220px;
+  }
+  
+
+.settings-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  z-index: 2;
 }
 
-.settings-button{
-    position: absolute;
-    top: -3px;
-    right: -3px;
-    z-index: 2;
+@media screen and (max-width: 600px) {
+  .container {
+    width: 100%;
+    padding: 0 10px;
+  }
 }

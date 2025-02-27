@@ -1,58 +1,59 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 .body {
   background-color: #0c0b0b;
   color: #0c0b0b;
 }
 
-
-.main-content{
+.main-content {
   background-color: #edeef3;
   overflow: auto;
+  // width: 100vw;
+  min-height: 100vh;
 }
 
-.main-content{
-  .page-divider {
-    border-top: 1px #BEBEBE solid
-  }
-}
-
-@media screen and (max-width: 700px) {
-  :host ::ng-deep .mdc-tab {
-    padding:0 15px !important;
-  }
-}
-
-.top-right {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-}
+/* Desktop Layout */
 .dashboard-widget {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   grid-auto-rows: 150px;
   gap: 16px;
+  row-gap: 50px;
   padding: 30px;
-  margin-bottom: 100%;
+  // margin-bottom: 100px;
+  margin-top: -60px;
 }
 
-.header{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+/* Mobile Layout - Override for screens <= 700px */
+@media screen and (max-width: 700px) {
+  .main-content {
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
+    padding: 0 10px;
+  }
 
-.widget-container {
-  display: flex;
-  flex-direction: column; /* Stacks items vertically */
-  align-items: center; /* Centers items horizontally */
-  margin-bottom: 16px; /* Add spacing between widgets */
-}
+  .dashboard-widget {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 15px;
+    padding: 0px;
+    width: 100%;
+  }
 
-h3 {
-  margin: 0;
-  padding-bottom: 8px; /* Optional: Space between the label and the widget */
+  .dashboard-widget app-widget {
+    width: 100%;
+    max-width: 90%;
+  }
+
+  .top-right {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+  }
 }

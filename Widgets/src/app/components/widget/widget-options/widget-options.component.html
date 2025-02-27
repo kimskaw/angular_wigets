@@ -1,53 +1,52 @@
+<!-- Close Options Button -->
 <button mat-icon-button class="close-button" (click)="showOptions.set(false)">
     <mat-icon>close</mat-icon>
-</button>
-
-<div>
+  </button>
+  
+  <!-- Width Options -->
+  <div>
     Width
     <mat-button-toggle-group 
-    hideMultipleSelectionIndicator="true"
-    [value]="data.columns ?? 1"
-    (change)="store.updateWidget(data.id, {columns: +$event.value})">
-        <mat-button-toggle [value]="1">1</mat-button-toggle>
-        <mat-button-toggle [value]="3">2</mat-button-toggle>
-        <mat-button-toggle [value]="4">3</mat-button-toggle>
-        <mat-button-toggle [value]="6">4</mat-button-toggle>
-        <!-- <mat-button-toggle [value]="5">5</mat-button-toggle>
-        <mat-button-toggle [value]="6">6</mat-button-toggle> -->
+      hideMultipleSelectionIndicator="true"
+      [value]="data.columns ?? 1"
+      (change)="store.updateWidget(data.id, { columns: +$event.value })"
+      (click)="data">
+      <mat-button-toggle [value]="2">1</mat-button-toggle>
+      <mat-button-toggle [value]="4">2</mat-button-toggle>
+      <mat-button-toggle [value]="6">3</mat-button-toggle>
+      <!-- <mat-button-toggle [value]="6">4</mat-button-toggle> -->
     </mat-button-toggle-group>
-</div>
-
-
-<div>
+  </div>
+  
+  <!-- Height Options -->
+  <div>
     Height
     <mat-button-toggle-group 
-    hideMultipleSelectionIndicator="true"
-    [value]="data.rows ?? 1"
-    (change)="store.updateWidget(data.id, {rows: +$event.value})">
-        <mat-button-toggle [value]="1">1</mat-button-toggle>
-        <mat-button-toggle [value]="2">2</mat-button-toggle>
-        <mat-button-toggle [value]="3">3</mat-button-toggle>
-        <mat-button-toggle [value]="4">4</mat-button-toggle>
+      hideMultipleSelectionIndicator="true"
+      [value]="data.rows ?? 1"
+      (change)="store.updateWidget(data.id, { rows: +$event.value })"
+      (click)="data">
+      <mat-button-toggle [value]="1">1</mat-button-toggle>
+      <mat-button-toggle [value]="2">2</mat-button-toggle>
+      <mat-button-toggle [value]="3">3</mat-button-toggle>
+      <mat-button-toggle [value]="4">4</mat-button-toggle>
     </mat-button-toggle-group>
-</div>
-
-<button mat-icon-button class="move-forward-button" (click)="store.moveWidgetToRight(data.id);">
-    
+  </div>
+  
+  <!-- Move Widget Right -->
+  <button mat-icon-button class="move-forward-button" (click)="store.moveWidgetToRight(data.id)">
     <mat-icon>chevron_right</mat-icon>
-</button>
-
-<button mat-icon-button class="move-backward-button" (click)="store.moveWidgetToLeft(data.id); ">
-
+  </button>
+  
+  <!-- Move Widget Left -->
+  <button mat-icon-button class="move-backward-button" (click)="store.moveWidgetToLeft(data.id)">
     <mat-icon>chevron_left</mat-icon>
-</button>
-
-<button mat-icon-button 
-class="remove-widget-button" 
-(click)="store.removeWidget(data.id)"
-[style.--mdc-icon-button-icon-color]="data.color ?? 'inherit'
-">
+  </button>
+  
+  <!-- Remove Widget -->
+  <button mat-icon-button class="remove-widget-button" 
+    (click)="store.removeWidget(data.id)"
+    [style.--mdc-icon-button-icon-color]="data.color ?? 'inherit'">
     <mat-icon>delete</mat-icon>
-</button>
-
-
-
+  </button>
+  

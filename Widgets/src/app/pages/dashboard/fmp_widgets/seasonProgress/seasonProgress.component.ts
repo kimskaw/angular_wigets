@@ -9,6 +9,7 @@ import * as echarts from 'echarts';
 export class SeasonProgressComponent {
   @ViewChild('chartContainer', { static: true }) chartContainer!: ElementRef;
 
+  
   option = {
     xAxis: {
       type: 'category',
@@ -25,10 +26,33 @@ export class SeasonProgressComponent {
         color: '#4A3AFF',
         backgroundStyle: {
           color: '#F8F8FF'
+        },
+        label: {
+          show: true, // Show the label
+          position: 'inside', // Position the label on top of the bar
+          color: '#ffff', // Label color
+          fontSize: 14, // Font size for the label
+          fontWeight: 'bold' // Font weight for the label
+        },
+        barWidth: 60, // Adjust as needed
+        markLine: {
+          symbol: 'none', // Hide line endpoints
+          lineStyle: {
+            color: '#4A3AFF', // Line color
+            width: 2
+          },
+          data: [
+            // Specify each line position manually for each bar
+            { xAxis: 'F', yAxis: 120 },
+            { xAxis: 'M', yAxis: 200 },
+            { xAxis: 'P', yAxis: 150 }
+          ]
         }
       }
     ]
   };
+  
+   
 
   constructor() {}
 

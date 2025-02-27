@@ -14,19 +14,29 @@ export class DepartmentPickingComponent {
     tooltip: {},
     dataset: {
       source: [
-        ['product', '2015', '2016', '2017'],
-        ['Matcha Latte', 43.3, 85.8, 93.7],
-        ['Milk Tea', 83.1, 73.4, 55.1],
-        ['Cheese Cocoa', 86.4, 65.2, 82.5],
-        ['Walnut Brownie', 72.4, 53.9, 39.1]
+        ['D1', 43.3],
+        ['D2', 83.1],
+        ['D3', 86.4],
+        ['D4', 72.4]
       ]
     },
+    barWidth: '60%',
+    barCategoryGap: '0%',
     xAxis: { type: 'category' },
     yAxis: {},
-    // Declare several bar series, each will be mapped
-    // to a column of dataset.source by default.
-    series: [{ type: 'bar' }, { type: 'bar' }, { type: 'bar' }]
+    series: [
+      {
+        type: 'bar',
+        itemStyle: {
+          color: (params: { dataIndex: number; }) => {
+            const colors = ['#FF6347', '#FFD700', '#32CD32', '#8A2BE2']; // Define an array of colors
+            return colors[params.dataIndex]; // Return a color based on the index
+          }
+        }
+      }
+    ]
   };
+  
   
 
   constructor() {}

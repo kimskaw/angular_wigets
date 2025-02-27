@@ -1,0 +1,52 @@
+<div class="filter-container">
+  <div class="px-10 py-5 bg-white rounded-2xl" style="height: 60%">
+    <div class="grid sm:grid-cols-1 gap-4 sm:my-5 lg:grid-cols-2">
+      <ng-container>
+        <div class="lg:my-5 grow basis-0 justify-center">
+
+          <div
+            class="text-gray-600 text-sm font-medium font-['Lexend'] lg:py-4"
+          >
+          <mat-radio-group [formControl]="selectedRegion">
+            <mat-radio-button value="1">Region 1</mat-radio-button>
+            <mat-radio-button value="2">Region 2</mat-radio-button>
+          </mat-radio-group>
+          <br>
+            Department
+          </div>
+          <select class="w-full" (change)="changedDept($event); showDepartmentType = true">
+            <option>See All</option>
+            <option *ngFor="let dept of getDepts()" [value]="dept">{{ dept }}</option>
+
+          </select>
+        </div>
+      </ng-container>
+
+      <div class="basis-1/2 mr-5 w-full" *ngIf="showDepartmentType">
+        <ng-container>
+          <div class="lg:my-5 grow basis-0 justify-center">
+            <div
+              class="text-gray-600 text-sm font-medium font-['Lexend'] lg:py-4"
+            >
+              Group
+            </div>
+            <select class="w-full" (change)="changedGroup($event)">
+              <option *ngFor="let group of getSelectedDeptGroup(this.selectedDept)"> {{group}}</option>
+            </select>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+    <div class="flex flex-row justify-end">
+      <div class="basis-1/6">
+        <button
+          type="button"
+          class="rounded-full w-full bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        >
+          OK
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

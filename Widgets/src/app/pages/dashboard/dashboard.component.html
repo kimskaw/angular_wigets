@@ -8,42 +8,79 @@
           </ng-template>
         </mat-tab>
       </mat-tab-group>
-          <button
-            class="top-right"
-            mat-raised-button
-            [mat-menu-trigger-for]="widgetMenu"
-          >
-            <mat-icon>add</mat-icon>
-            Add Widget
-          </button>
 
-          <mat-menu #widgetMenu="matMenu">
-            <ng-container
-              *ngIf="store.widgetstoAdd().length > 0; else noWidgets"
+      <button
+        class="top-right"
+        mat-raised-button
+        [mat-menu-trigger-for]="widgetMenu"
+      >
+        <mat-icon>add</mat-icon>
+        Add Widget
+      </button>
+      <mat-menu #widgetMenu="matMenu">
+        <ng-container *ngIf="tabIndex === 0; else cct">
+          <ng-container *ngIf="fmp_store.widgetstoAdd().length > 0; else noWidgets">
+            <button
+              mat-menu-item
+              (click)="fmp_store.addWidget(widget)"
+              *ngFor="let widget of fmp_store.widgetstoAdd()"
             >
+              {{ widget.label }}
+            </button>
+          </ng-container>
+        </ng-container>
+
+        <ng-template #cct>
+          <ng-container *ngIf="tabIndex === 1; else defaultTab">
+            <ng-container *ngIf="cct_store.widgetstoAdd().length > 0; else noWidgets">
               <button
                 mat-menu-item
-                (click)="store.addWidget(widget)"
-                *ngFor="let widget of store.widgetstoAdd()"
+                (click)="cct_store.addWidget(widget)"
+                *ngFor="let widget of cct_store.widgetstoAdd()"
               >
                 {{ widget.label }}
               </button>
             </ng-container>
-            <ng-template #noWidgets>
-              <button mat-menu-item disabled>No widgets to add</button>
-            </ng-template>
-          </mat-menu>
+          </ng-container>
+        </ng-template>
 
-          <!-- <mat-tab>
-    <ng-template mat-tab-label> "EV Report" </ng-template>
-  </mat-tab> -->
+        <ng-template #defaultTab>
+          <ng-container *ngIf="table_store.widgetstoAdd().length > 0; else noWidgets">
+            <button
+              mat-menu-item
+              (click)="table_store.addWidget(widget)"
+              *ngFor="let widget of table_store.widgetstoAdd()"
+            >
+              {{ widget.label }}
+            </button>
+          </ng-container>
+        </ng-template>
+
+        <ng-template #noWidgets>
+          <p>No widgets available</p>
+        </ng-template>
+      </mat-menu>
     </div>
-
   </div>
-  <div #dashboard class="dashboard-widget">
-    <!-- @for (w of store.third_row(); track w.id) -->
-    <ng-container *ngFor="let w of store.addedWidgets()">
-      <app-widget [data]="w"></app-widget>
+
+  <!-- **Single Responsive Dashboard Section (No Duplication)** -->
+  <div class="dashboard-widget">
+    <ng-container *ngIf="tabIndex == 0">
+      <ng-container *ngFor="let widget of fmp_store.fmp_addedWidgets()">
+        <app-widget [data]="widget" [store]="fmp_store"></app-widget>
+      </ng-container>
+    </ng-container>
+
+    <ng-container *ngIf="tabIndex == 1">
+      <ng-container *ngFor="let widget of cct_store.cct_addedWidgets()">
+        <app-widget [data]="widget" [store]="cct_store"></app-widget>
+      </ng-container>
+    </ng-container>
+
+    <ng-container *ngIf="tabIndex == 2">
+      <ng-container *ngFor="let widget of table_store.table_addedWidgets()">
+        <app-widget [data]="widget" [store]="table_store"></app-widget>
+      </ng-container>
     </ng-container>
   </div>
 </div>

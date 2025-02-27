@@ -9,8 +9,8 @@ import {
 } from '@angular/core';
 import { WidgetComponent } from '../../components/widget/widget.component';
 import { Widget } from '../../models/dashboard';
-import { weeklygoalComponent } from './widgets/weeklygoal/weeklygoal.component';
-import { DashboardService } from '../../services/dashboard.service';
+import { weeklygoalComponent } from './fmp_widgets/weeklygoal/weeklygoal.component';
+import { DashboardService } from '../../services/fmp-dashboard.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
@@ -19,6 +19,8 @@ import { wrapGrid } from 'animate-css-grid';
 import { MatTabsModule } from '@angular/material/tabs';
 import { Observable, Observer } from 'rxjs';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { CctService } from '../../services/cct-dashboard.service';
+import { TableDashboardService } from '../../services/table-dashboard.service';
 
 export interface DashboardTab {
   label: string;
@@ -36,19 +38,20 @@ export interface DashboardTab {
     CommonModule,
     MatTabsModule,
   ],
-  providers: [DashboardService],
+  providers: [DashboardService, CctService, TableDashboardService],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 })
 export class DashboardComponent {
-  store = inject(DashboardService);
+  fmp_store = inject(DashboardService);
+  cct_store = inject(CctService);
+  table_store = inject(TableDashboardService);
   tab: any
   tabIndex: number = 0;
   asyncTabs: Observable<DashboardTab[]>;
-  // dashboard = viewChild.required<ElementRef>('dashboard');
-  // test(){
-  //   console.log(wrapGrid(this.dashboard().nativeElement), 'dashboard');
-  // }
+
+
+
   dashboard = signal<ElementRef | null>(null);
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
@@ -67,9 +70,14 @@ export class DashboardComponent {
   }
 
   tabClick(tab :any) {
+    // console.log(tab, "TAB")
 		this.tab = tab
 		this.tabIndex = tab.index;
 	}
+
+  getTabLabel(tab: any) {
+    // console.log(tab, "TAB")
+  }
 
 	generateTabs(): Array<DashboardTab>  {
 		let tabs:any = [
